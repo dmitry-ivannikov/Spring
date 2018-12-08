@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan("com.dmitry.web.controllers")
+@ComponentScan("com.dmitry.web")
 public class MyWebConfig {
     @Bean
     public ViewResolver getViewResolver() {
