@@ -4,29 +4,26 @@ import com.dmitry.web.repo.User;
 import com.dmitry.web.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = {"/home"})
+//@RequestMapping(value = {"/home"})
 public class HelloWorldController {
 
     @Autowired
     UserRepository userRepository;
+    @GetMapping(value = "home")
 
-//    @RequestMapping(value = {"first", "third"}, method = RequestMethod.GET, params = "!myParam")
-    @GetMapping(value = "first")
-    @ResponseBody
-    public String home1() {
-      //  return "/WEB-INF/views/home.jsp";
-        return userRepository.getUser().getName();
-    }
+//    public String home(Model model) {
+//        model.addAttribute("Yo");
+//        model.addAttribute("name", "Dima");
+//        model.addAttribute(userRepository.getUser());
+//        return "home";
+//    }
 
-    //@PostMapping
-    //или
-    @RequestMapping(value = "second", method = RequestMethod.POST)
-    @ResponseBody
-    public String home2() {
-        return "home2";
+    public User home(Model model) {
+        return userRepository.getUser();
     }
 
 }

@@ -4,6 +4,6 @@
     <title>Hello text</title>
 </head>
 <body>
-    hello world =)
+    hello world ${user.name}
 </body>
 </html>
