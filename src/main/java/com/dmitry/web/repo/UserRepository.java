@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserRepository implements Repository {
     public User getUser() {
-        return new User("Dima", "22");
+        return new User("Dima", 22);
     }
 }

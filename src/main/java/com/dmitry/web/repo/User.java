@@ -1,10 +1,13 @@
 package com.dmitry.web.repo;
 
-public class User {
-    String name;
-    String age;
+import org.springframework.lang.NonNull;
 
-    public User(String name, String age) {
+public class User {
+    @NonNull
+    String name;
+    int age;
+
+    public User(String name, int age) {
         this.name = name;
         this.age = age;
     }
@@ -17,11 +20,11 @@ public class User {
         this.name = name;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 }
