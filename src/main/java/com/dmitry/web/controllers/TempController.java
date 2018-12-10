@@ -1,27 +1,33 @@
 package com.dmitry.web.controllers;
 
+import com.dmitry.web.repo.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
+import java.io.IOException;
+import java.io.Writer;
 
 @Controller
-@RequestMapping("/reqParam/{one}")
 public class TempController {
-    @GetMapping("/reqParam/{one}/two/{three}")
-    @ResponseBody
-    public String getParams(@PathVariable("one") String one, @PathVariable int three) {
-        return one + three;
-//        http://localhost:8080/spring/reqParam/first/two/3
-    }
-
-
-
-//    @GetMapping("reqParam")
-//    @ResponseBody
-//    public String getParams(@RequestParam("paramPage") String first,
-//                            @RequestParam(required = false, defaultValue = "nuPrivet") String second) {
-////        http://localhost:8080/spring/reqParam?paramPage=bugaga (значение не проставленно, но приходит дефолтное значение)
-//        return first + second;
+    @GetMapping("/temp")
+//    public void getParams(Model model,
+//                          ServletRequest request,
+//                          ServletResponse response
+//                          ) throws IOException {
+//        response.getWriter().write("Hello from servlet");
 //    }
 
+    public void getParams(Model model,
+                          Writer writer,
+                          @CookieValue("JSESSIONID") String cookies,
+                          @RequestHeader("Host") String header,
+                          @SessionAttribute User user
+    ) throws IOException {
+        writer.write(cookies + " " + header);
+    }
 
 }
