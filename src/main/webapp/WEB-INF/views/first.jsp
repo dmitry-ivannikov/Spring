@@ -5,5 +5,9 @@
 </head>
 <body>
 hello world
+<form method="post" action="${flowExecutorUrl}">
+    <input type="hidden" name="_eventId" value="action">
+    <input type="submit" value="GoNext">
+</form>
 </body>
 </html>
