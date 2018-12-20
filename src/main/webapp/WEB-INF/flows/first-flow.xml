@@ -4,10 +4,11 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
 start-state="first">
     <view-state id="first" view="first.jsp">
-        <!--<transition on="action" to="second"/>-->
+        <transition on="action" to="myAction"/>
     </view-state>
+    <action-state id="myAction">
+        <evaluate expression="myFlowBean.printHello()"/>
+        <transition to="second"/>
+    </action-state>
     <view-state id="second" view="second.jsp"/>
-    <global-transitions>
-        <transition on="action" to="second"/>
-    </global-transitions>
 </flow>
