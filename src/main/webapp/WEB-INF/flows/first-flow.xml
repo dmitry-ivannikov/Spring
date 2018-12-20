@@ -8,7 +8,16 @@ start-state="first">
     </view-state>
     <action-state id="myAction">
         <evaluate expression="myFlowBean.printHello()"/>
-        <transition to="second"/>
+        <transition to="sub"/>
     </action-state>
+
+    <!--&lt;!&ndash;<view-state id="second" view="second.jsp"/>&ndash;&gt;-->
+    <!--<end-state id="second"/>-->
+
+    <subflow-state id="sub" subflow="thirdFlow">
+        <transition on="endState" to="second"/>
+    </subflow-state>
     <view-state id="second" view="second.jsp"/>
+    
+
 </flow>
