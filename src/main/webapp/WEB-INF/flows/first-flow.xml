@@ -8,16 +8,20 @@ start-state="first">
     </view-state>
     <action-state id="myAction">
         <evaluate expression="myFlowBean.printHello()"/>
-        <transition to="sub"/>
+        <transition to="decision"/>
     </action-state>
 
     <!--&lt;!&ndash;<view-state id="second" view="second.jsp"/>&ndash;&gt;-->
     <!--<end-state id="second"/>-->
 
-    <subflow-state id="sub" subflow="thirdFlow">
-        <transition on="endState" to="second"/>
-    </subflow-state>
+    <!--<subflow-state id="sub" subflow="thirdFlow">-->
+        <!--<transition on="endState" to="second"/>-->
+    <!--</subflow-state>-->
+    <decision-state id="decision">
+        <if test="myFlowBean.or()" then="second" else="third"/>
+    </decision-state>
     <view-state id="second" view="second.jsp"/>
+    <view-state id="third" view="third.jsp"/>
     
 
 </flow>

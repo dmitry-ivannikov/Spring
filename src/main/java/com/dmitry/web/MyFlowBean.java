@@ -7,4 +7,8 @@ public class MyFlowBean {
     public void printHello(){
         System.out.println("Hello");
     }
+
+    public boolean or() {
+        return false;
+    }
 }
