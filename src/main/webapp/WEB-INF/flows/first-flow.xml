@@ -3,11 +3,14 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
 start-state="first">
+    <var name="userRepo" class="com.dmitry.web.repo.UserRepository"/>
+    <input name="i" type="int"/>
     <view-state id="first" view="first.jsp">
         <transition on="action" to="myAction"/>
     </view-state>
     <action-state id="myAction">
-        <evaluate expression="myFlowBean.printHello()"/>
+        <!--<evaluate expression="myFlowBean.printUser(userRepo.getUser())"/>-->
+        <evaluate expression="myFlowBean.printI(flowScope.i)"/>
         <transition to="decision"/>
     </action-state>
 
