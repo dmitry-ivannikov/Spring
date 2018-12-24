@@ -1,0 +1,1 @@
+create table if no exists Books (id MEDIUMINT not null AUTO_INCREMENT, name char(30) not null, primary key (id))
