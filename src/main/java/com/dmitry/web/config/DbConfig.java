@@ -1,5 +1,6 @@
 package com.dmitry.web.config;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,10 +25,23 @@ public class DbConfig {
 //        return dataSource;
 //    }
 
+//    @Bean
+//    DataSource dataSource() {
+//        return new EmbeddedDatabaseBuilder()
+//                .setType(EmbeddedDatabaseType.H2).addScript("classpath:myScript.sql").build();
+//    }
+
     @Bean
-    DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2).addScript("classpath:myScript.sql").build();
+    public BasicDataSource dataSource(){
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        basicDataSource.setUrl("jdbc:mysql://localhost:3306/Lessons?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        basicDataSource.setUsername("root");
+        basicDataSource.setPassword("123qwe");
+        basicDataSource.setInitialSize(5);
+        basicDataSource.setMaxActive(10);
+
+        return basicDataSource;
     }
 
     @Bean
