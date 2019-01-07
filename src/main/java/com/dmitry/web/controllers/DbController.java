@@ -14,8 +14,8 @@ public class DbController {
     @GetMapping("createTable")
     @ResponseBody
     public String createTable(){
-//        jdbcOperations.execute("CREATE TABLE MyTable (id INT, fname VARCHAR(30), lname VARCHAR(30));");
-        jdbcOperations.execute("DROP TABLE MyTable");
+        jdbcOperations.execute("CREATE TABLE MyTable (id INT, fname VARCHAR(30), lname VARCHAR(30));");
+//        jdbcOperations.execute("DROP TABLE MyTable");
         return "table was created";
     }
 }

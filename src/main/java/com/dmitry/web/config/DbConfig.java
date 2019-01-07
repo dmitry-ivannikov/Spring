@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.jndi.JndiObjectFactoryBean;
 
 import javax.sql.DataSource;
 
@@ -31,17 +32,25 @@ public class DbConfig {
 //                .setType(EmbeddedDatabaseType.H2).addScript("classpath:myScript.sql").build();
 //    }
 
+//    @Bean
+//    public BasicDataSource dataSource(){
+//        BasicDataSource basicDataSource = new BasicDataSource();
+//        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        basicDataSource.setUrl("jdbc:mysql://localhost:3306/Lessons?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+//        basicDataSource.setUsername("root");
+//        basicDataSource.setPassword("123qwe");
+//        basicDataSource.setInitialSize(5);
+//        basicDataSource.setMaxActive(10);
+//
+//        return basicDataSource;
+//    }
     @Bean
-    public BasicDataSource dataSource(){
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        basicDataSource.setUrl("jdbc:mysql://localhost:3306/Lessons?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-        basicDataSource.setUsername("root");
-        basicDataSource.setPassword("123qwe");
-        basicDataSource.setInitialSize(5);
-        basicDataSource.setMaxActive(10);
-
-        return basicDataSource;
+    public JndiObjectFactoryBean dataSourse() {
+        JndiObjectFactoryBean dataSourse = new JndiObjectFactoryBean();
+        dataSourse.setJndiName("jdbc/testDB");
+        dataSourse.setResourceRef(true);
+        dataSourse.setProxyInterface(DataSource.class);
+        return dataSourse;
     }
 
     @Bean
