@@ -14,8 +14,11 @@ public class DbController {
     @GetMapping("createTable")
     @ResponseBody
     public String createTable(){
-        jdbcOperations.execute("CREATE TABLE MyTable (id INT, fname VARCHAR(30), lname VARCHAR(30));");
-//        jdbcOperations.execute("DROP TABLE MyTable");
+        jdbcOperations.execute("CREATE TABLE IF NOT EXISTS MyTable (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, fname VARCHAR(30), lname VARCHAR(30));");
+        jdbcOperations.update("INSERT into MyTable (fname) VALUES ('first book')");
+        jdbcOperations.update("update MyTable set fname = 'second book' where id = ?", 1);
+
+        //        jdbcOperations.execute("DROP TABLE MyTable");
         return "table was created";
     }
 }
